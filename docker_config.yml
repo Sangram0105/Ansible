@@ -4,19 +4,17 @@
   become: true 
 
   tasks: 
-      - name: Updating the system 
-        apt: 
-        update-cache: yes
+    - name: Updating the system 
+      apt: 
+        update_cache: yes
 
-      - name:  installing docker
+    - name: Installing docker
+      apt:
+        name: docker.io
+        state: present
 
-        apt:
-          name: docker.io
-          state: present
-
-      - name: Starting the docker service  
-        service:
-          - name: docker
-            state: started
-            enabled: yes
-
+    - name: Starting the docker service  
+      service:
+        name: docker
+        state: started
+        enabled: yes
