@@ -1,0 +1,21 @@
+---
+- name: deploying web page using the nginx
+  hosts: all 
+  become: true 
+
+  tasks: 
+    - name: installing nginx 
+      apt: 
+        name: nginx
+        state: present
+
+    - name: start nginx
+      service:
+        name: nginx
+        state: started
+        enabled: yes  
+    - name: deploy web page  
+      copy:
+        src: index.html  #where the index .html is saved in the master node 
+        dest: /var/www/html
+        enabled: yes
